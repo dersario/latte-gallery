@@ -1,5 +1,5 @@
 from fastapi import APIRouter,status
-from latte_gallery.schemas import StatusResponse, KokResponse, AccountRegister, Account, Role
+from latte_gallery.schemas import StatusResponse, KokResponse, AccountRegister, Account, Role, GetAccounts
 
 router = APIRouter(prefix="/get")
 accounts_router = APIRouter(prefix="/accounts", tags=["Аккаунты"])
@@ -23,6 +23,20 @@ def register() -> Account:
         login = "абстрактный Пася",
         name = "Пася",
         role = Role.USER,
+    )
+
+@accounts_router.get('/accounts', summary="Получение списка всех аккаунтов", status_code=status.HTTP_201_CREATED)
+def get_accounts() -> GetAccounts:
+    return GetAccounts(
+        count = 1,
+        items = [
+            {
+                "id": 1,
+                "login": "user1",
+                "name": "Василий Пупкин",
+                "role": "USER"
+            }
+        ]
     )
 
 @router.get("/kok", summary="Получить кок")

@@ -23,3 +23,7 @@ class AccountRegister(BaseModel):
     login: Annotated[str, StringConstraints(min_length=1,strip_whitespace=True)]
     password: Annotated[str, StringConstraints(min_length=8)]
     name: Annotated[str, StringConstraints(strip_whitespace=True, min_length=1)]
+
+class GetAccounts(BaseModel):
+    count: int
+    items: list
