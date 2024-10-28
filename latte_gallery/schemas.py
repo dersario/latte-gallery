@@ -26,4 +26,15 @@ class AccountRegister(BaseModel):
 
 class GetAccounts(BaseModel):
     count: int
-    items: list
+    items: list[Account]
+
+class CreatePicture(BaseModel):
+  title: str = "Котик"
+  tags: list = ["cats","adorable","cute"]
+  is_private: bool = False
+  file_uuid: str = "9affceb3-d9ef-4a2f-9ec2-0932c56b8648"
+
+class GetPictures(BaseModel):
+    count: int = 1
+    items: list[CreatePicture]
+    
